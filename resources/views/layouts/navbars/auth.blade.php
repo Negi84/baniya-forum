@@ -28,7 +28,7 @@
                 <div class="collapse show" id="laravelExamples">
                     <ul class="nav">
                         <li class="{{ $elementActive == 'profile' ? 'active' : '' }}">
-                            <a href="{{ route('profile.edit') }}">
+                            <a href="{{ route('page.index','profile-edit') }}">
                                 <span class="sidebar-mini-icon">{{ __('UP') }}</span>
                                 <span class="sidebar-normal">{{ __(' User Profile ') }}</span>
                             </a>
