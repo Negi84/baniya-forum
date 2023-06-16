@@ -16,7 +16,7 @@ class MembershipController extends Controller
 
         } catch (\Exception $e) {
             flash("Something went wrong")->error();
-            return back();
+            return view('pages.500');
         }
     }
 

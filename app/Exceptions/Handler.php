@@ -44,6 +44,8 @@ class Handler extends ExceptionHandler
     {
         if ($exception instanceof NotFoundHttpException) {
             return response()->view('pages.404', [], 404);
+        }else if ($this->isHttpException($exception) && $exception->getCode() == 500) {
+            return response()->view('pages.500', [], 500);
         }
 
         return parent::render($request, $exception);
