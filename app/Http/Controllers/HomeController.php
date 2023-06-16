@@ -21,6 +21,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // flash('Welcome to dashboard')->success();
         return view('pages.dashboard');
     }
 }

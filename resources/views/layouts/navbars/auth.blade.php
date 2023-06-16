@@ -12,14 +12,14 @@
     <div class="sidebar-wrapper">
         <ul class="nav">
             <li class="{{ $elementActive == 'dashboard' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'dashboard') }}">
+                <a href="{{ route('home') }}">
                     <i class="nc-icon nc-bank"></i>
                     <p>Dashboard</p>
                 </a>
             </li>
             <li class="{{ $elementActive == 'membership' ? 'active' : '' }}">
-                <a href="{{ route('page.index', 'membership') }}">
-                    <i class="nc-icon nc-tile-56"></i>
+                <a href="{{ route('membership') }}">
+                    <i class="nc-icon nc-bank"></i>
                     <p>Membership</p>
                 </a>
             </li>

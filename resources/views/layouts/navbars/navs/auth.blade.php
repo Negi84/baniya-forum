@@ -16,7 +16,7 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="nc-icon nc-settings-gear-65"></i>
                         <p>
-                            <span class="d-lg-none d-md-block">{{ __('Account') }}</span>
+                            <span class="d-lg-none d-md-block">Account</span>
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink2">
@@ -24,8 +24,8 @@
                             @csrf
                         </form>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" onclick="document.getElementById('formLogOut').submit();">{{ __('Log out') }}</a>
-                            <a class="dropdown-item" href="{{ route('page.index','profile-edit') }}">{{ __('My profile') }}</a>
+                            <a class="dropdown-item" onclick="document.getElementById('formLogOut').submit();">Log out</a>
+                            <a class="dropdown-item" href="javascript:void(0)">My profile</a>
                         </div>
                     </div>
                 </li>

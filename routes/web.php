@@ -23,10 +23,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/membership', [App\Http\Controllers\admin\MembershipController::class, 'index'])->name('membership');
 
-// Route::get('/users', function(){
-//     return view('users.index');
-// })->name('users.index');
 
-Route::get('/page/{user}', [PageController::class, 'index'])->name('page.index');
-// Route::put('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+// Route::get('/page/{user}', [PageController::class, 'index'])->name('page.index');

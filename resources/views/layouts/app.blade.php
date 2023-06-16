@@ -26,7 +26,7 @@ The above copyright notice and this permission notice shall be included in all c
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <!-- Extra details for Live View on GitHub Pages -->
-    
+
     <title>
         {{ __('Paper Dashboard by Creative Tim') }}
     </title>
@@ -44,11 +44,12 @@ The above copyright notice and this permission notice shall be included in all c
 </head>
 
 <body class="{{ $class }}">
-    
+
+    @include('vendor.flash.message') 
     @auth()
         @include('layouts.page_templates.auth')
     @endauth
-    
+
     @guest
         @include('layouts.page_templates.guest')
     @endguest
@@ -70,7 +71,7 @@ The above copyright notice and this permission notice shall be included in all c
     <script src="{{ asset('assets/demo/demo.js') }}"></script>
     <!-- Sharrre libray -->
     <script src="../assets/demo/jquery.sharrre.js"></script>
-    
+
     @stack('scripts')
 
     @include('layouts.navbars.fixed-plugin-js')
