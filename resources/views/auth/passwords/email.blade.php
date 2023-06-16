@@ -1,57 +1,58 @@
-@extends('layouts.app', [
-    'class' => 'login-page',
-    'backgroundImagePath' => 'img/bg/fabio-mangione.jpg'
-])
+@extends('layouts/blankLayout')
+
+@section('title', 'Forgot Password Basic - Pages')
+
+@section('page-style')
+    <!-- Page -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}">
+@endsection
 
 @section('content')
-    <div class="content">
-        <div class="container">
-            <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-                <div class="card card-login">
-                    <div class="card-body ">
-                        <div class="card-header ">
-                            <h3 class="header text-center">{{ __('Reset Password') }}</h3>
+    <div class="container-xxl">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner py-4">
+
+                <!-- Forgot Password -->
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Logo -->
+                        <div class="app-brand justify-content-center">
+                            <a href="{{ url('/') }}" class="app-brand-link gap-2">
+                                <span class="app-brand-logo demo">@include('_partials.macros', ['width' => 25, 'withbg' => '#696cff'])</span>
+                                <span
+                                    class="app-brand-text demo text-body fw-bolder">{{ config('variables.templateName') }}</span>
+                            </a>
                         </div>
-
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        <form class="form" method="POST" action="{{ route('password.email') }}">
+                        <!-- /Logo -->
+                        <h4 class="mb-2">Forgot Password? 🔒</h4>
+                        <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
+                        <form id="formAuthentication" class="mb-3" action="{{ route('password.email') }}" method="POST">
                             @csrf
-
-                            <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }} mb-3">
-                                <div class="input-group input-group-alternative">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="nc-icon nc-single-02"></i></span>
-                                    </div>
-                                    <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" type="email" name="email" value="{{ old('email') }}" required autofocus>
-                                </div>
-                                @if ($errors->has('email'))
-                                    <div>
-                                        <span class="invalid-feedback" style="display: block" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
-                                        </span>
-                                    </div>
-                                @endif
+                            <div class="mb-3">
+                                <label for="email"
+                                    class="form-label {{ $errors->has('email') ? ' has-danger' : '' }}">Email</label>
+                                <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                    placeholder="{{ __('Email') }}" type="email" name="email"
+                                    value="{{ $email ?? old('email') }}" required autofocus>
                             </div>
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-warning btn-round mb-3">{{ __('Send Password Reset Link') }}</button>
-                            </div>
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                            <button type="submit" class="btn btn-primary d-grid w-100">Send Reset Link</button>
                         </form>
+                        <div class="text-center">
+                            <a href="{{ route('login') }}"
+                                class="d-flex align-items-center justify-content-center">
+                                <i class="bx bx-chevron-left scaleX-n1-rtl bx-sm"></i>
+                                Back to login
+                            </a>
+                        </div>
                     </div>
                 </div>
+                <!-- /Forgot Password -->
             </div>
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            demo.checkFullPageBackgroundImage();
-        });
-    </script>
-@endpush

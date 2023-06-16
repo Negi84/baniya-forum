@@ -1,57 +1,59 @@
-@extends('layouts.app', [
-    'class' => 'register-page'
-])
+@extends('layouts/blankLayout')
+
+@section('title', 'Forgot Password Basic - Pages')
+
+@section('page-style')
+    <!-- Page -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}">
+@endsection
 
 @section('content')
-    <div class="content">
-        <div class="container">
-            <div class="col-lg-4 col-md-6 ml-auto mr-auto">
-                <div class="card card-login">
-                    <div class="card-body ">
-                        <form class="form" method="POST" action="{{ route('password.update') }}">
+    <div class="container-xxl">
+        <div class="authentication-wrapper authentication-basic container-p-y">
+            <div class="authentication-inner py-4">
 
+                <!-- Forgot Password -->
+                <div class="card">
+                    <div class="card-body">
+                        <!-- Logo -->
+                        <div class="app-brand justify-content-center">
+                            <a href="{{ url('/') }}" class="app-brand-link gap-2">
+                                <span class="app-brand-logo demo">@include('_partials.macros', ['width' => 25, 'withbg' => '#696cff'])</span>
+                                <span
+                                    class="app-brand-text demo text-body fw-bolder">{{ config('variables.templateName') }}</span>
+                            </a>
+                        </div>
+                        <!-- /Logo -->
+                        <h4 class="mb-2">Reset Password? 🔒</h4>
+                        <form id="formAuthentication" class="mb-3 form" action="{{ route('password.update') }}" method="POST">
                             @csrf
-
                             <input type="hidden" name="token" value="{{ $token }}">
-
-                            <div class="card-header ">
-                                <h3 class="header text-center">{{ __('Reset Password') }}</h3>
+                            <div class="mb-3">
+                                <label for="email"
+                                    class="form-label {{ $errors->has('email') ? ' has-danger' : '' }}">Email</label>
+                                <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" type="email" name="email" value="{{ $email ?? old('email') }}" required autofocus>
                             </div>
-                            <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }} mb-3">
-                                <div class="input-group input-group-alternative">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="nc-icon nc-single-02"></i></span>
-                                    </div>
-                                    <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" type="email" name="email" value="{{ $email ?? old('email') }}" required autofocus>
-                                </div>
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" style="display: block;" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
 
-                            <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                                <div class="input-group input-group-alternative">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="nc-icon nc-key-25"></i></span>
-                                    </div>
-                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" placeholder="{{ __('Password') }}" type="password" value="{{ old('password') }}" required>
-                                </div>
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" style="display: block;" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+                            <div class="mb-3">
+                                <label for="password"
+                                    class="form-label {{ $errors->has('password') ? ' has-danger' : '' }}">Password</label>
+                                <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('Password') }}" type="password" name="password" value="{{ $email ?? old('password') }}" required autofocus>
                             </div>
+                            @if ($errors->has('password'))
+                                <span class="invalid-feedback" style="display: block;" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
 
-                            <div class="form-group">
-                                <div class="input-group input-group-alternative">
-                                    <div class="input-group-prepend">
-                                        <span class="input-group-text"><i class="nc-icon nc-key-25"></i></span>
-                                    </div>
-                                    <input class="form-control" name="password_confirmation" placeholder="{{ __('Password Confirmation') }}" type="password" value="{{ old('password_confirmation') }}" required>
-                                </div>
+                            <div class="mb-3">
+                                <label for="password_confirmation"
+                                    class="form-label">Password Confirmation</label>
+                                <input class="form-control" placeholder="{{ __('Password Confirmation') }}" type="password" name="password_confirmation" value="{{ old('password_confirmation')}}" required>
                             </div>
 
                             <div class="text-center">
@@ -60,15 +62,8 @@
                         </form>
                     </div>
                 </div>
+                <!-- /Forgot Password -->
             </div>
         </div>
     </div>
 @endsection
-
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            demo.checkFullPageBackgroundImage();
-        });
-    </script>
-@endpush
