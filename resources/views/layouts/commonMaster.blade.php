@@ -24,6 +24,7 @@
 </head>
 
 <body>
+  @include('flash::message')
   <!-- Layout Content -->
   @yield('layoutContent')
   <!--/ Layout Content -->

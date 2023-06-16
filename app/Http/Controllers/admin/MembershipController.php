@@ -8,7 +8,6 @@ use App\Models\Membership;
 
 class MembershipController extends Controller
 {
-
     public function index()
     {
         try {
